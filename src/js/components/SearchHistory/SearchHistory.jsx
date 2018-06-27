@@ -3,11 +3,30 @@ import React from 'react';
 export default class SearchHistory extends React.Component {
     constructor(props) {
         super(props);
+
+        this.handleDate = this.handleDate.bind(this);
+        this.handleTime = this.handleTime.bind(this);
+        // this.handleHistory = this.handleHistory.bind(this);
+    }
+
+    handleDate() {
+      var d = new Date;
+      var month = d.getMonth();
+      var day = d.getDate();
+      var year = d.getFullYear();
+      return (month + '/' + day + '/' + year);
+
+    }
+
+    handleTime() {
+      var d = new Date;
+      var hour = d.getHours();
+      var minute = d.getMinutes();
+      var second = d.getSeconds();
+      return (hour + ':' + minute + ':' + second);
     }
 
     render() {
-
-      var d = new Date ('00/00/0000')
 
         return (
             <div className='card border-info mb-3'>
@@ -16,30 +35,17 @@ export default class SearchHistory extends React.Component {
               <div className='form-group'>
                 <table className='table table-striped'>
                   <tbody>
-                    <tr>
-                      <td>San Diego</td>
-                      <td>04/28/2016</td>
-                      <td>19:04:46</td>
-                    </tr>
-                    <tr>
-                      <td>New York</td>
-                      <td>04/28/2016</td>
-                      <td>19:04:48</td>
-                    </tr>
-                    <tr>
-                      <td>Washington D.C</td>
-                      <td>04/28/2016</td>
-                      <td>19:04:49</td>
-                    </tr>
-                    <tr>
-                      <td>London</td>
-                      <td>04/28/2016</td>
-                      <td>19:04:50</td>
-                    </tr>
+                    {this.props.history.map((history, index) => (
+                          <tr key={index}>
+                          <td>{this.props.name}</td>
+                          <td>{this.handleDate}</td>
+                          <td>{this.handleTime}</td>
+                        </tr>
+                    ))}
                     <tr>
                       <td>Tokyo</td>
-                      <td>04/28/2016</td>
-                      <td>19:04:51</td>
+                      <td>06/25/2018</td>
+                      <td>11:12:13</td>
                     </tr>
                   </tbody>
                 </table>

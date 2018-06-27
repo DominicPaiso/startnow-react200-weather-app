@@ -7,8 +7,8 @@ export function addCity(city) {
     console.log('inside of action', city);
     return {
         type: 'ADD_CITY',
-        payload: {city} 
-    }
+        payload: city 
+    };
 }
 
 export function apiCallToPayload(city) {
@@ -17,7 +17,21 @@ export function apiCallToPayload(city) {
         type: 'API_CALL_TO_PAYLOAD',
         payload: axios
             .get(weatherAPI)
-            .then(response => response.data)
+            .then(response => {
+                console.log('response' , response.data);
+              return response.data
+            })
+            .catch(err => {
+                console.log(err)
+                return err
+            })
     };
 
 }
+
+// export function getHistory(history) {
+//     return {
+//         type: 'GET_HISTORY',
+//         payload: history
+//     };
+// }

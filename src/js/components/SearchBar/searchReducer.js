@@ -10,35 +10,45 @@ const defaultState = {
     temp_min: '',
     temp_max: '',
     wind_speed: '',
-
+    history: []
 };
 
-export default function SearchReducer(state = defaultState, action = {}) {
+export default function searchReducer(state = defaultState, action) {
+    console.log('action' , action);
     const { type, payload } = action;
     console.log('testing reducer', payload);
     switch (type) {
         case 'ADD_CITY': {
             return {
                 ...state,
-                city: payload.city
+                city: payload
             };
         }
 
-        case 'API_CALL_TO_PAYLOAD': {
+        case 'API_CALL_TO_PAYLOAD_FULFILLED': {
             return {
                 ...state,
-                name: payload.data.name,
-                lat: payload.data.coord.lat,
-                lon: payload.data.coord.lon,
-                icon: payload.data.weather[0].icon,
-                temp: payload.data.main.temp,
-                pressure: payload.data.main.pressure,
-                humidity: payload.data.main.humidity,
-                temp_min: payload.data.main.temp_min,
-                temp_max: payload.data.main.temp_max,
-                wind_speed: payload.data.wind.speed
+                name: payload.name,
+                lat: payload.coord.lat,
+                lon: payload.coord.lon,
+                icon: payload.weather[0].icon,
+                temp: payload.main.temp,
+                pressure: payload.main.pressure,
+                humidity: payload.main.humidity,
+                temp_min: payload.main.temp_min,
+                temp_max: payload.main.temp_max,
+                wind_speed: payload.wind.speed,
+                history: [payload.history,
+                    ...state.history]
             }
         }
+
+        // case 'GET_HISTORY': {
+        //     return {
+        //         ...state,
+        //         history: payload
+        //     }
+        // }
 
         default: {
             return state;

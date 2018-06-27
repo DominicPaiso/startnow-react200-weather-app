@@ -17,13 +17,14 @@ export default class SearchBar extends React.Component {
     handleCitySearch(e) {
         const { dispatch } = this.props;
         const { value } = e.target;
-        console.log(this.props);
+        console.log('dispatch', dispatch);
+        console.log('props' , this.props);
         dispatch(addCity(value));
     }
 
     handleCityData() {
         const { city, dispatch } = this.props;
-        console.log(city);
+        console.log('inside handleCityData', city);
         dispatch(apiCallToPayload(city));
     }
 
@@ -42,8 +43,8 @@ export default class SearchBar extends React.Component {
                 <div className='btn-group'>
                     <button type='button' className='btn btn-primary' value='San Diego' onClick={this.handleClickPreset}>San Diego</button>
                     <button type='button' className='btn btn-primary' value='New York' onClick={this.handleClickPreset}>New York</button>
-                    <button type='button' className='btn btn-primary' value='Washington' onClick={this.handleClickPreset}>Washington D.C</button>
-                    <button type='button' className='btn btn-primary' value={'London'} onClick={this.handleClickPreset}>London</button>
+                    <button type='button' className='btn btn-primary' value='Seattle' onClick={this.handleClickPreset}>Seattle</button>
+                    <button type='button' className='btn btn-primary' value='London' onClick={this.handleClickPreset}>London</button>
                     <button type='button' className='btn btn-primary' value='Tokyo' onClick={this.handleClickPreset}>Tokyo</button>
                 </div>
                 <div className='row'>

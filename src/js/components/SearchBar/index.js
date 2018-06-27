@@ -3,7 +3,8 @@ import SearchBar from './SearchBar';
 
 function mapStoreToProps(store) {
     return {
-        city: store.city.city
+        city: store.searchReducer.city,
+        history: store.searchReducer.history
     };
 }
 
